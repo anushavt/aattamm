@@ -1,0 +1,572 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+:root {
+    --pink: #ff79b0;
+    --pink-light: #ffd2e5;
+    --lavender: #b9a7ff;
+    --lime: #d8ff65;
+    --yellow: #ffe477;
+    --ink: #17151c;
+    --cream: #fff8ef;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 10% 10%, #ffd2e5 0 9%, transparent 10%),
+        radial-gradient(circle at 90% 20%, #c9bfff 0 10%, transparent 11%),
+        radial-gradient(circle at 15% 90%, #e1ff85 0 8%, transparent 9%),
+        var(--cream);
+    color: var(--ink);
+    font-family: "DM Sans", Arial, sans-serif;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.25;
+    background-image:
+        radial-gradient(#17151c 0.7px, transparent 0.7px);
+    background-size: 14px 14px;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.app {
+    width: min(92%, 520px);
+    margin: 0 auto;
+    padding: 28px 0 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.welcome-screen {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.tiny-label,
+.eyebrow,
+.score-label,
+.photo-label {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.tiny-label {
+    margin: 0 0 10px;
+    transform: rotate(-2deg);
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(68px, 18vw, 105px);
+    line-height: 0.85;
+    font-weight: 900;
+    letter-spacing: -7px;
+    transform: rotate(-3deg);
+    text-shadow: 7px 7px 0 var(--pink);
+}
+
+.tagline {
+    margin: 24px 0 30px;
+    font-size: 18px;
+    font-weight: 700;
+    transform: rotate(2deg);
+}
+
+.welcome-card {
+    width: 100%;
+    padding: 24px;
+    background: var(--white);
+    border: 3px solid var(--ink);
+    border-radius: 28px;
+    box-shadow: 8px 8px 0 var(--ink);
+    transform: rotate(-1deg);
+}
+
+.victim-label {
+    margin: 0 0 14px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#nameInput {
+    width: 100%;
+    padding: 16px 18px;
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    outline: none;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 17px;
+    text-align: center;
+}
+
+#nameInput:focus {
+    box-shadow: 4px 4px 0 var(--lavender);
+}
+
+#startButton {
+    width: 100%;
+    margin-top: 14px;
+    padding: 17px 22px;
+    border: 3px solid var(--ink);
+    border-radius: 17px;
+    background: var(--pink);
+    color: var(--ink);
+    font-size: 16px;
+    font-weight: 900;
+    cursor: pointer;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: 0.12s ease;
+}
+
+#startButton:hover {
+    transform: translate(-2px, -2px) rotate(-1deg);
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+#startButton:active {
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 var(--ink);
+}
+
+.tiny-note {
+    margin-top: 22px;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.65;
+}
+
+.sticker {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    font-size: 27px;
+    box-shadow: 4px 4px 0 var(--ink);
+    animation: floaty 2.8s ease-in-out infinite;
+}
+
+.sticker-one {
+    top: 13%;
+    left: 2%;
+    background: var(--lime);
+    transform: rotate(-12deg);
+}
+
+.sticker-two {
+    top: 20%;
+    right: 3%;
+    background: var(--yellow);
+    animation-delay: -0.8s;
+}
+
+.sticker-three {
+    bottom: 13%;
+    right: 8%;
+    background: var(--lavender);
+    transform: rotate(10deg);
+    animation-delay: -1.5s;
+}
+
+@keyframes floaty {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+
+/* GAME */
+
+.game-screen {
+    padding-top: 8px;
+}
+
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 0 4px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.top-row strong {
+    max-width: 55%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.camera-wrap {
+    position: relative;
+}
+
+.camera-label {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    margin-bottom: -2px;
+    padding: 7px 12px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: var(--yellow);
+    font-size: 11px;
+    font-weight: 900;
+    transform: rotate(-2deg);
+}
+
+.camera-box {
+    position: relative;
+    width: 100%;
+    height: min(72vw, 390px);
+    min-height: 300px;
+    overflow: hidden;
+    border: 4px solid var(--ink);
+    border-radius: 28px;
+    background: #222;
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.camera-box video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.camera-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.corner {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-color: white;
+    opacity: 0.8;
+}
+
+.top-left {
+    top: 18px;
+    left: 18px;
+    border-top: 3px solid;
+    border-left: 3px solid;
+}
+
+.top-right {
+    top: 18px;
+    right: 18px;
+    border-top: 3px solid;
+    border-right: 3px solid;
+}
+
+.bottom-left {
+    bottom: 18px;
+    left: 18px;
+    border-bottom: 3px solid;
+    border-left: 3px solid;
+}
+
+.bottom-right {
+    bottom: 18px;
+    right: 18px;
+    border-bottom: 3px solid;
+    border-right: 3px solid;
+}
+
+.shake-instruction {
+    margin: 28px 0 15px;
+}
+
+.eyebrow {
+    margin: 0 0 4px;
+}
+
+.shake-instruction h2 {
+    margin: 0;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -2px;
+    transform: rotate(-2deg);
+}
+
+#status {
+    margin: 10px 0 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.score-card {
+    margin-top: 20px;
+    padding: 20px;
+    border: 3px solid var(--ink);
+    border-radius: 25px;
+    background: var(--lavender);
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+.score-label {
+    margin: 0;
+}
+
+.score-number {
+    margin: 2px 0 4px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 76px;
+    line-height: 0.95;
+    font-weight: 900;
+}
+
+.meter {
+    width: 100%;
+    height: 19px;
+    margin: 13px 0;
+    overflow: hidden;
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+    background: var(--white);
+}
+
+#meterFill {
+    width: 0%;
+    height: 100%;
+    background: var(--lime);
+    transition: width 0.1s;
+}
+
+#chaosLevel {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.funny-message {
+    display: inline-block;
+    margin: 22px 0 0;
+    padding: 10px 15px;
+    border: 2px solid var(--ink);
+    border-radius: 15px;
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    transform: rotate(1deg);
+}
+
+.result-box {
+    margin-top: 30px;
+}
+
+#analysisBox {
+    margin-bottom: 20px;
+    padding: 18px;
+    border: 3px dashed var(--ink);
+    border-radius: 22px;
+    background: var(--pink-light);
+}
+
+#analysisText {
+    margin: 5px 0 0;
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.loading-dots {
+    font-size: 28px;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.photo-label {
+    margin: 0 0 10px;
+}
+
+#canvas {
+    display: block;
+    width: 100%;
+    border: 4px solid var(--ink);
+    border-radius: 24px;
+    box-shadow: 7px 7px 0 var(--ink);
+    background: white;
+}
+
+@media (max-width: 430px) {
+    .app {
+        width: 90%;
+        padding-top: 20px;
+    }
+
+    .sticker {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+
+    .camera-box {
+        min-height: 280px;
+    }
+
+    .shake-instruction h2 {
+        font-size: 43px;
+    }
+
+    .score-number {
+        font-size: 68px;
+    }
+}
+
+
+/* ============================================================
+   AATTAM LEADERBOARD
+   ============================================================ */
+
+.leaderboard-section {
+    margin-top: 42px;
+    padding: 24px 0 10px;
+}
+
+.leaderboard-heading {
+    margin-bottom: 18px;
+}
+
+.leaderboard-heading h2 {
+    margin: 5px 0 7px;
+    font-size: 28px;
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: -1px;
+    transform: rotate(-1deg);
+}
+
+.leaderboard-heading p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.7;
+}
+
+.leaderboard-status {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 7px 12px;
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+    background: var(--lime);
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leaderboard-item {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 58px;
+    padding: 10px 13px;
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    background: var(--white);
+    box-shadow: 5px 5px 0 var(--ink);
+    text-align: left;
+    transform: rotate(0.4deg);
+}
+
+.leaderboard-item:nth-child(even) {
+    transform: rotate(-0.4deg);
+    background: var(--pink-light);
+}
+
+.leaderboard-item.rank-one {
+    background: var(--yellow);
+    transform: rotate(-1deg);
+    box-shadow: 7px 7px 0 var(--ink);
+}
+
+.leaderboard-rank {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 16px;
+    font-weight: 900;
+    text-align: center;
+}
+
+.leaderboard-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.leaderboard-score {
+    min-width: 45px;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    text-align: right;
+}
+
+.leaderboard-item.rank-one .leaderboard-score {
+    font-size: 25px;
+}
+
+@media (max-width: 430px) {
+
+    .leaderboard-heading h2 {
+        font-size: 25px;
+    }
+
+    .leaderboard-item {
+        grid-template-columns: 42px 1fr auto;
+        min-height: 54px;
+        padding: 9px 11px;
+    }
+
+    .leaderboard-name {
+        font-size: 14px;
+    }
+
+}

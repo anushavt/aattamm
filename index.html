@@ -1,1 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AATTAM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- WELCOME -->
+    <div id="welcomeScreen" class="welcome-screen">
+
+        <div class="sticker sticker-one">🌀</div>
+        <div class="sticker sticker-two">📸</div>
+        <div class="sticker sticker-three">💀</div>
+
+        <p class="tiny-label">LIVE CHAOS CAM 📸</p>
+
+        <h1>AATTAM</h1>
+
+        <p class="tagline">അടക്കം വേണ്ട, ആട്ടം മതി!</p>
+
+        <div class="welcome-card">
+            <p class="victim-label">WHO'S GETTING AATTAM'D?</p>
+
+            <input
+                type="text"
+                id="nameInput"
+                placeholder="Enter your name"
+                maxlength="20"
+                autocomplete="off"
+            >
+
+            <button type="button" id="startButton">
+                LET'S AATTAM 🌀
+            </button>
+        </div>
+
+        <p class="tiny-note">Your phone. Your dignity. Your problem.</p>
+
+    </div>
+
+
+    <!-- GAME -->
+    <div id="gameScreen" class="game-screen" style="display:none;">
+
+        <div class="top-row">
+            <span>AATTAM // LIVE</span>
+            <strong id="playerLabel"></strong>
+        </div>
+
+        <div class="camera-wrap">
+
+            <div class="camera-label">LIVE CHAOS CAM 📸</div>
+
+            <div class="camera-box">
+                <video id="camera" autoplay playsinline></video>
+
+                <div class="camera-overlay">
+                    <div class="corner top-left"></div>
+                    <div class="corner top-right"></div>
+                    <div class="corner bottom-left"></div>
+                    <div class="corner bottom-right"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="shake-instruction">
+            <p class="eyebrow">YOUR ONLY JOB</p>
+            <h2>SHAKE IT.</h2>
+
+            <p id="status">READY TO AATTAM?</p>
+        </div>
+
+
+        <div class="score-card">
+
+            <p class="score-label">AATTAM SCORE</p>
+
+            <h2 id="score" class="score-number">0</h2>
+
+            <div class="meter">
+                <div id="meterFill"></div>
+            </div>
+
+            <p id="chaosLevel">CALM</p>
+
+        </div>
+
+
+        <div id="funnyMessage" class="funny-message">
+            🌀 SHAKE YOUR PHONE.
+        </div>
+
+
+        <!-- RESULT -->
+        <div class="result-box">
+
+            <p class="photo-label">YOUR AATTAM PHOTO</p>
+
+            <canvas id="canvas"></canvas>
+
+            <div id="analysisBox" style="display:none;">
+                <p id="analysisText">💀 AATTAM COMPLETE.</p>
+            </div>
+
+        </div>
+
+
+        <!-- LEADERBOARD -->
+        <section class="leaderboard-section">
+
+            <div class="leaderboard-heading">
+                <span class="eyebrow">GLOBAL CHAOS</span>
+                <h2>🏆 AATTAM LEADERBOARD</h2>
+                <p>Who shook their phone the hardest?</p>
+            </div>
+
+            <div id="leaderboardStatus" class="leaderboard-status">
+                Loading chaos...
+            </div>
+
+            <div id="leaderboardList" class="leaderboard-list"></div>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
